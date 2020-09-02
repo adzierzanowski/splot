@@ -23,6 +23,18 @@ of it if you want to use plain old switches instead.
 
 This will also be handled later.
 
+## Missing features
+
+To be implemented:
+
+* plot on n-th readout option
+* colored lines for different subplots
+* total average / current buffer average and other stats
+* dynamic resizing
+* better error handling
+* buffer, display and calculation optimizations
+* command line args
+
 ## Screenshot
 
 ![](https://i.imgur.com/37MfwQr.png)
