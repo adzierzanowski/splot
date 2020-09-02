@@ -34,6 +34,7 @@ To be implemented:
 * better error handling
 * buffer, display and calculation optimizations
 * command line args
+* proper handling of negative values
 
 ## Screenshot
 
