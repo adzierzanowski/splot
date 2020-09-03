@@ -36,7 +36,10 @@ def main():
   while True:
     w, h = shutil.get_terminal_size((80, 24))
     
-    line = s.readline().decode('ascii').strip()
+    try:
+      line = s.readline().decode('ascii').strip()
+    except UnicodeDecodeError:
+      continue
 
     if line == '':
       warning('no data')
@@ -63,6 +66,7 @@ def main():
         goto(0, 0)
         clear_screen()
         cvs.clear()
+        cvs.set(0, 0) # for constant bottom y limit
         for i, l in enumerate(buf):
           l = [float(x) for x in l.split(' ')]
           for j, x in enumerate(l):

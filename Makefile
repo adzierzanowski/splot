@@ -1,7 +1,7 @@
 PYTHON3 = /usr/bin/env python3
 TWINE = /usr/bin/env twine
 
-spemu:
+spemu: spemu.c
 	$(CC) -Wall -Wpedantic -O3 -std=c11 spemu.c -o spemu
 
 dist:

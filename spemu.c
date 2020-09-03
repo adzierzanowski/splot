@@ -7,6 +7,12 @@
 #include <unistd.h>
 
 
+const char * const RED = "\x1b[38;5;1m";
+const char * const GREEN = "\x1b[38;5;1m";
+const char * const YELLOW = "\x1b[38;5;3m";
+const char * const BLUE = "\x1b[38;5;4m";
+const char * const END = "\x1b[0m";
+
 extern int errno;
 
 int fd = -1;
@@ -17,12 +23,10 @@ void sigint_handler(int _)
   printf("\rGracefully quitting...\n");
 
   free(buf);
-
   if (fd > 0)
   {
     close(fd);
   }
-
   exit(0);
 }
 
@@ -34,37 +38,22 @@ int main(void)
   if (fd < 0)
   {
     fprintf(
-      stderr,
-      "\x1b[38;5;1m"
-      "Couldn't open PTY"
-      "\x1b[0m"
-      ": %s (%d)\n",
-      strerror(errno),
-      errno
+      stderr, "%sCouldn't open PTY%s: %s (%d)\n",
+      RED, END, strerror(errno), errno
     );
     exit(1);
   }
   printf(
-    "Opened PTY with "
-    "\x1b[38;5;3m"
-    "fd="
-    "\x1b[38;5;4m"
-    "%d"
-    "\x1b[0m\n",
-    fd
+    "Opened PTY with %sfd%s=%s%d%s\n",
+    BLUE, END, YELLOW, fd, END
   );
 
   int err = grantpt(fd);
   if (err)
   {
     fprintf(
-      stderr,
-      "\x1b[38;5;1m"
-      "Failed to grant access to the PTY device"
-      "\x1b[0m"
-      ": %s (%d)\n",
-      strerror(errno),
-      errno
+      stderr, "%sFailed to grant access to the PTY device%s: %s (%d)\n",
+      RED, END, strerror(errno), errno
     );
     exit(1);
   }
@@ -74,20 +63,12 @@ int main(void)
   if (err)
   {
     fprintf(
-      stderr,
-      "Failed to unlock the PTY device: %s (%d)\n",
-      strerror(errno),
-      errno
+      stderr, "%sFailed to unlock the PTY device%s: %s (%d)\n",
+      RED, END, strerror(errno), errno
     );
     exit(1);
   }
-  printf(
-    "Unlocked the PTY device: "
-    "\x1b[38;5;4m"
-    "%s"
-    "\x1b[0m\n",
-    ptsname(fd)
-  );
+  printf("Unlocked the PTY device: %s%s%s\n", YELLOW, ptsname(fd), END);
 
   for (;;)
   {
@@ -99,4 +80,3 @@ int main(void)
 
   return 0;
 }
-
