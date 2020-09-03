@@ -1,2 +1,6 @@
-test
+test*
 __pycache__
+*.egg-info
+build
+dist
+spemu

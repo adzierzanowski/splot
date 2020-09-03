@@ -35,6 +35,22 @@ class Menu:
       else:
         print(f'  [{i:2}] {opt:40} {desc:30}')
   
+  def select_next(self):
+    self.selected += 1
+    if self.selected >= len(self.options):
+      self.selected = 0
+  
+  def select_prev(self):
+    self.selected -= 1
+    if self.selected < 0:
+      self.selected = len(self.options) - 1
+  
+  def select_num(self, n):
+    if n < len(self.options):
+      self.selected = n
+    else:
+      self.selected = len(self.options) - 1
+
   def choose(self, title='Choose one of the following:'):
     self.set_terminal()
     while True:
@@ -45,16 +61,22 @@ class Menu:
       c = sys.stdin.read(1)
       
       if c == 'j':
-        self.selected += 1
-        if self.selected >= len(self.options):
-          self.selected = 0
+        self.select_next()
 
       elif c == 'k':
-        self.selected -= 1
-        if self.selected < 0:
-          self.selected = len(self.options) - 1
+        self.select_prev()
 
-      elif c == '\n':
+      elif c in ('\n', ' '):
         return self.selected, self.options[self.selected]
+      
+      elif c == '\x1b':
+        c = sys.stdin.read(2)
+        if c == '[A':
+          self.select_prev()
+        elif c == '[B':
+          self.select_next()
+      
+      elif c in [str(n) for n in range(10)]:
+        self.select_num(int(c))
           
     self.reset_terminal()
