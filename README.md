@@ -4,6 +4,8 @@ This utility is a text mode implementation of what can be done in Arduino IDE
 when choosing `Serial Plotter` option, i.e. it plots the numbers received on
 the serial port in real time.
 
+![](https://i.imgur.com/37MfwQr.png)
+
 ## spemu
 
 There's also a helper utility included, called `spemu` which is a serial port
@@ -71,7 +73,3 @@ CLI args, you won't see it.
 - [x] human menu keymapping
 - [x] make a python package
 - [x] make a PyPI release
-
-## Screenshot
-
-![](https://i.imgur.com/37MfwQr.png)
