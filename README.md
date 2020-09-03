@@ -9,7 +9,10 @@ the serial port in real time.
 There's also a helper utility included, called `spemu` which is a serial port
 emulator. It's useful for testing when no real device is nearby.
 
-Then run `spemu`. The program will print file descriptor and PTY device path.
+
+#### Usage
+
+Run `spemu`. The program will print file descriptor and PTY device path.
 You can write directly to the `spemu` stdin or open file descriptor with some
 script and write to it. The things you write will be outputted by the virtual
 COM port.
