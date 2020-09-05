@@ -1,3 +1,3 @@
 NAME = 'spplot'
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 DESC = 'command-line serial plotter'

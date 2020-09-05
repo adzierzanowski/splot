@@ -66,7 +66,7 @@ CLI args, you won't see it.
 - [ ] better error handling
 - [ ] buffer, display and calculation optimizations
 - [ ] proper handling of negative values
-- [ ] set y axis range option
+- [x] set y axis range option
 - [x] plot on n-th readout option
 - [x] command line args
 - [x] dynamic resizing

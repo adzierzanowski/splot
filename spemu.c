@@ -34,6 +34,9 @@ int main(void)
 {
   signal(SIGINT, sigint_handler);
 
+  pid_t pid = getpid();
+  printf("%sPID%s: %s%d%s\n", BLUE, END, YELLOW, pid, END);
+
   fd = posix_openpt(O_RDWR | O_NOCTTY);
   if (fd < 0)
   {
@@ -68,7 +71,10 @@ int main(void)
     );
     exit(1);
   }
-  printf("Unlocked the PTY device: %s%s%s\n", YELLOW, ptsname(fd), END);
+  printf(
+    "Unlocked the PTY %sdevice%s: %s%s%s\n",
+    BLUE, END, YELLOW, ptsname(fd), END
+  );
 
   for (;;)
   {

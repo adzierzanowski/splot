@@ -25,6 +25,14 @@ def warning(msg):
     flush=True
   )
 
+def error(msg):
+  goto(0, 0)
+  print(
+    f'\x1b[38;5;1mERROR: {msg} [{time.perf_counter():.0f}]\x1b[0m',
+    end='',
+    flush=True
+  )
+
 def goto(x, y):
   print(f'\x1b[{y};{x}H', end='', flush=True)
 
@@ -62,3 +70,6 @@ def get_baud():
   with Menu(BAUDRATES, default_selection=BAUDRATES.index(115200)) as menu:
     _, baud = menu.choose('Choose baud rate:')
   return baud
+
+def normalize(x, h, max_):
+  return -x / max_ * (h*4 - 20)
